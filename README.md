@@ -79,6 +79,57 @@ pip install torch torchvision              # For TextCNN (MPS/CUDA)
 pip install transformers modelscope        # For DeBERTa (Hugging Face)
 pip install accelerate                     # For mixed-precision training
 ```
+
+## Quick Usage
+
+### Step 1: Generate GloVe Word Embeddings
+```bash
+# Build vocabulary from training data (min frequency = 5)
+bash build_vocab.sh
+bash cut_vocab.sh
+python3 pickle_vocab.py
+
+# Construct co-occurrence matrix
+python3 cooc.py
+
+# Train GloVe embeddings (SGD-based matrix factorization)
+python3 glove_template.py
+```
+
+### Step 2: Train and Evaluate Models
+
+**Machine Learning Baselines (CPU/M4):**
+```bash
+# Baseline Logistic Regression
+python3 logistic.py
+
+# Enhanced Logistic Regression (Multi-View Pooling)
+python3 logistic_enhance.py
+
+# Baseline Random Forest
+python3 random_forest.py
+
+# Enhanced Random Forest (Multi-View Pooling)
+python3 random_forest_enhanced.py
+```
+
+**Deep Learning Models (GPU Required):**
+```bash
+# TextCNN (Apple MPS or CUDA)
+python3 text_cnn.py
+
+# DeBERTa-v3-Large Fine-tuning (CUDA recommended, 24GB VRAM)
+python3 deberta_finetuning.py
+```
+
+### Step 3: Submit Predictions
+```bash
+# All models generate submission_*.csv files automatically
+# Select the best performing model (e.g., submission_deberta.csv)
+```
+
+---
+
 ## Methodology
 
 We adopted a progressive approach to sentiment classification, evolving from statistical feature engineering to deep representation learning.
