@@ -118,7 +118,7 @@ python3 random_forest_enhanced.py
 # TextCNN (Apple MPS or CUDA)
 python3 text_cnn.py
 
-# DeBERTa-v3-Large Fine-tuning (CUDA recommended, 24GB VRAM)
+# DeBERTa-v3-Large Fine-tuning (CUDA recommended)
 python3 deberta_finetuning.py
 ```
 
